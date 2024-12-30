@@ -6,7 +6,6 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     paths=${TMUX_SESSIONIZER_PATHS:-"~/ ~/projects"}
-    echo $paths
     selected=$(find $(eval echo $paths) -mindepth 1 -maxdepth 2 -type d | fzf)
 fi
 
