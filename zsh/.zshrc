@@ -108,6 +108,7 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias ll="ls -lah"
 
+export DOTFILES="$HOME/.new-dotfiles"
 export EDITOR='nvim'
 export GOPATH=$HOME/go
 

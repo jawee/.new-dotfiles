@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="vim,tmux,zsh,bin,nvim,wsl-ubuntu,git"
+    STOW_FOLDERS="vim,tmux,zsh,bin,nvim,git,wsl-ubuntu"
 fi
 
 if [[ -z $DOTFILES ]]; then
-    DOTFILES=$HOME/.dotfiles-new
+    DOTFILES=$HOME/.new-dotfiles
 fi
 
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES 
