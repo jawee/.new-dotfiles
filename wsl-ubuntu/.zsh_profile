@@ -16,3 +16,5 @@ esac
 # pnpm end
 #
 #
+
+export TMUX_SESSIONIZER_PATHS="~/ ~/projects ~/go/src/github.com/jawee"

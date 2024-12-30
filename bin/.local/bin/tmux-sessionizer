@@ -5,7 +5,9 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~ ~/projects ~/go/src ~/go/src/github.com/jawee -mindepth 1 -maxdepth 2 -type d | fzf)
+    paths=${TMUX_SESSIONIZER_PATHS:-"~/ ~/projects"}
+    echo $paths
+    selected=$(find $(eval echo $paths) -mindepth 1 -maxdepth 2 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
