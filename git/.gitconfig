@@ -1,0 +1,9 @@
+[user]
+	email = olsson.andreas@gmail.com
+	name = Andreas Olsson
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master
+[core]
+    editor = nvim

@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+if [[ -z $STOW_FOLDERS ]]; then
+    STOW_FOLDERS="vim,tmux,zsh,bin,nvim,wsl-ubuntu,git"
+fi
+
+if [[ -z $DOTFILES ]]; then
+    DOTFILES=$HOME/.dotfiles-new
+fi
+
+STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES 
+pushd $DOTFILES
+for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+do
+  echo "Installing $folder"
+  stow -t ~ -D $folder
+  stow -t ~ $folder
+done
+popd
