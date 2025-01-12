@@ -10,6 +10,7 @@ vim.lsp.util.apply_text_document_edit = function(text_document_edit, index, offs
 end
 
 return {
+{
     'neovim/nvim-lspconfig',
     dependencies = {
         'j-hui/fidget.nvim',
@@ -33,14 +34,14 @@ return {
             }
         end
 
-        require('lspconfig').csharp_ls.setup({
-            capabilities = capabilities,
-            handlers = {
-                ["textDocument/definition"] = require("csharpls_extended").handler,
-                ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-            },
-        })
-
+        -- require('lspconfig').csharp_ls.setup({
+        --     capabilities = capabilities,
+        --     handlers = {
+        --         ["textDocument/definition"] = require("csharpls_extended").handler,
+        --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+        --     },
+        -- })
+        --
         vim.api.nvim_create_autocmd("LspAttach", {
             callback = function(e)
                 local opts = { buffer = e.buf }
@@ -72,4 +73,12 @@ return {
         })
     end
 
+},
+{
+    "seblj/roslyn.nvim",
+    ft = "cs",
+    opts = {
+        -- your configuration comes here; leave empty for default settings
+    }
+}
 }
