@@ -36,6 +36,7 @@ return {
                 ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
             },
             formatting = {
+                expandable_indicator = true,
                 fields = { 'abbr', 'kind', 'menu' },
                 format = function(entry, vim_item)
                     local menu = source_mapping[entry.source.name]

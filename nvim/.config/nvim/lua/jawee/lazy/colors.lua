@@ -29,9 +29,11 @@ return {
         name = "gruvbox",
         config = function()
             require("gruvbox").setup({
+                dim_inactive = true,
+                transparent_mode = true,
                 contrast = "hard",
-                transparent = true,
-                terminal_colors = true,
+                transparent = false,
+                terminal_colors = false,
             })
         end
     },
