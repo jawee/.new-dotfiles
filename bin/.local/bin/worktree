@@ -1,0 +1,55 @@
+#!/bin/bash
+
+output=$(git rev-parse --is-bare-repository)
+
+if [ "$output" != "true" ]
+then
+    exit 1
+fi
+
+# List existing worktrees
+existing_worktrees=$(git worktree list --porcelain | awk '/^worktree /{print $2}')
+
+# Ensure options is properly formatted
+if [[ -z "$existing_worktrees" ]]; then
+    options="[new worktree]"
+else
+    options="${existing_worktrees}"$'\n[new worktree]'
+fi
+
+# Use fzf to choose an option
+choice=$(echo "$options" | fzf)
+
+if [[ -z "$choice" ]]; then
+    exit 1
+fi
+
+if [[ "$choice" == "[new worktree]" ]]; then
+    # Prompt for type of branch
+    type=$(echo -e "feature\nfix\nchore\nbug" | fzf)
+    
+    if [[ -z "$type" ]]; then
+        exit 1
+    fi
+    
+    # Prompt for worktree name
+    read -p "Enter worktree name: " worktree_name
+    
+    if [[ -z "$worktree_name" ]]; then
+        echo "Worktree name cannot be empty. Exiting."
+        exit 1
+    fi
+    
+    branch_name="$type/$worktree_name"
+    if [[ "$type" == "feature" ]]; then
+        type="feat"
+    fi
+    folder_name="$type-$worktree_name"
+    
+    git worktree add "$folder_name" -b "$branch_name"
+    tmux send-keys -t 1 "cd $folder_name" ^M
+else
+    tmux send-keys -t 1 "cd $choice" ^M
+fi
+
+tmux send-keys -t 1 "source tmux-init" ^M

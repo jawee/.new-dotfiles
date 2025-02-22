@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 # Stolen from github.com/theprimeagen/.dotfiles
+#
+run_worktree_script() {
+    tmux send-keys -t $1 "worktree" c-M
+}
 
 if [[ $# -eq 1 ]]; then
     selected=$1
@@ -18,11 +22,13 @@ tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
+    run_worktree_script $selected_name
     exit 0
 fi
 
 if ! tmux has-session -t $selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
+    run_worktree_script $selected_name
 fi
 
 if [[ -z $TMUX ]]; then
