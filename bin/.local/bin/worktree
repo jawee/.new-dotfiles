@@ -57,4 +57,3 @@ if [ -f tmux-init ]; then
 else
     tmux send-keys -t 1 "source tmux-init" c-M
 fi
-# tmux send-keys -t 1 "source tmux-init" ^M
