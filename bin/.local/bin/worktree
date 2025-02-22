@@ -52,4 +52,9 @@ else
     tmux send-keys -t 1 "cd $choice" ^M
 fi
 
-tmux send-keys -t 1 "source tmux-init" ^M
+if [ -f tmux-init ]; then
+    tmux send-keys -t 1 "source ../tmux-init" c-M
+else
+    tmux send-keys -t 1 "source tmux-init" c-M
+fi
+# tmux send-keys -t 1 "source tmux-init" ^M
