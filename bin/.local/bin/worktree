@@ -4,6 +4,7 @@ output=$(git rev-parse --is-bare-repository)
 
 if [ "$output" != "true" ]
 then
+    tmux send-keys -t 1 "source tmux-init" c-M
     exit 1
 fi
 
