@@ -18,9 +18,10 @@ return {
       -- rest
       local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'bashls', 'ocamllsp', 'lua_ls' }
       for _, lsp in pairs(servers) do
-        require('lspconfig')[lsp].setup {
+        vim.lsp.config(lsp, {
           capabilities = capabilities,
-        }
+        })
+        vim.lsp.enable(lsp)
       end
 
       -- require('lspconfig').csharp_ls.setup({
