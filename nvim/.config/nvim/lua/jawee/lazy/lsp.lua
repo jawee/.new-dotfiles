@@ -32,7 +32,7 @@ return {
       --     },
       -- })
 
-      vim.diagnostic.config({virtual_lines=true})
+      vim.diagnostic.config({ virtual_lines = true })
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(e)
@@ -71,6 +71,15 @@ return {
     ft = "cs",
     opts = {
       -- your configuration comes here; leave empty for default settings
+      config = {
+        cmd = {
+            "dotnet",
+            vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+            "--logLevel=Information",
+            "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+            "--stdio",
+        },
+    },
     }
   }
 }
