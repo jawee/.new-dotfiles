@@ -16,21 +16,13 @@ return {
         vim.lsp.protocol.make_client_capabilities(),
         cmp_lsp.default_capabilities())
       -- rest
-      local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'bashls', 'ocamllsp', 'lua_ls' }
+      local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'bashls', 'ocamllsp', 'lua_ls', 'templ' }
       for _, lsp in pairs(servers) do
         vim.lsp.config(lsp, {
           capabilities = capabilities,
         })
         vim.lsp.enable(lsp)
       end
-
-      -- require('lspconfig').csharp_ls.setup({
-      --     capabilities = capabilities,
-      --     handlers = {
-      --         ["textDocument/definition"] = require("csharpls_extended").handler,
-      --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-      --     },
-      -- })
 
       vim.diagnostic.config({ virtual_lines = true })
 
@@ -73,13 +65,13 @@ return {
       -- your configuration comes here; leave empty for default settings
       config = {
         cmd = {
-            "dotnet",
-            vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-            "--logLevel=Information",
-            "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-            "--stdio",
+          "dotnet",
+          vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+          "--logLevel=Information",
+          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
+          "--stdio",
         },
-    },
+      },
     }
   }
 }
