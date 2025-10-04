@@ -1,5 +1,5 @@
 [user]
-	email = olsson.andreas@gmail.com
+	email = andreas.olsson@eastcoast.se
 	name = Andreas Olsson
 [pull]
 	rebase = false
@@ -7,3 +7,15 @@
 	defaultBranch = master
 [core]
     editor = nvim
+
+[includeIf "gitdir:~/.new-dotfiles/**"]
+  path = ~/personal/.gitconfig
+[includeIf "gitdir:~/ansible-stuff/**"]
+  path = ~/personal/.gitconfig
+[includeIf "gitdir:~/personal/**"]
+  path = ~/personal/.gitconfig
+[includeIf "gitdir:~/work/**"]
+  path = ~/work/.gitconfig
+
+[alias]
+	wadd = "!f() { \\\n  if [ -z \"$1\" ]; then \\\n    printf \"Usage: git wadd <feature-branch-suffix>\\n\"; \\\n    return 1; \\\n  fi; \\\n  BRANCH_SUFFIX=\"$1\"; \\\n  FULL_BRANCH_NAME=\"feat-$BRANCH_SUFFIX\"; \\\n  git worktree add -b \"$FULL_BRANCH_NAME\" \\\n    \"$FULL_BRANCH_NAME\" \\\n    --track \"origin/feature/$BRANCH_SUFFIX\"; \\\n}; f"

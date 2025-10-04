@@ -16,13 +16,22 @@ return {
         vim.lsp.protocol.make_client_capabilities(),
         cmp_lsp.default_capabilities())
       -- rest
-      local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'bashls', 'ocamllsp', 'lua_ls' }
+      local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'bashls', 'ocamllsp', 'lua_ls', 'html', 'cssls',
+        'jsonls', 'eslint' }
       for _, lsp in pairs(servers) do
         vim.lsp.config(lsp, {
           capabilities = capabilities,
         })
         vim.lsp.enable(lsp)
       end
+
+      -- local bicep_lsp_bin = "/home/figge/.local/bin/bicep-langserver/Bicep.LangServer.dll"
+      local bicep_lsp_bin = vim.fs.joinpath(vim.fn.stdpath("data"), "bicep", "Bicep.LangServer.dll")
+      vim.lsp.config('bicep', {
+        capabilities = capabilities,
+        cmd = { "dotnet", bicep_lsp_bin },
+      })
+      vim.lsp.enable('bicep')
 
       -- require('lspconfig').csharp_ls.setup({
       --     capabilities = capabilities,
@@ -50,6 +59,7 @@ return {
           vim.keymap.set("n", "<leader>vp", function() vim.diagnostic.jump({ count = -1 }) end, opts)
           vim.keymap.set("n", "<leader>vfo", function() vim.lsp.buf.format({ async = false }) end, opts)
           vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+          vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.hover() end, opts)
         end,
       })
 
@@ -73,13 +83,15 @@ return {
       -- your configuration comes here; leave empty for default settings
       config = {
         cmd = {
-            "dotnet",
-            vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-            "--logLevel=Information",
-            "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-            "--stdio",
+          "dotnet",
+          vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+          "--logLevel=Information",
+          -- "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+          "--extensionLogDirectory", -- .. vim.fs.dirname(vim.lsp.log.get_filename()),
+          vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
+          "--stdio",
         },
-    },
+      },
     }
   }
 }
