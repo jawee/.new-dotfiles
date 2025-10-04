@@ -9,6 +9,6 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 
 vim.filetype.add({
   pattern = {
-    ['*.bicepparam'] = "bicep-params",
+    ["*.bicepparam"] = "bicep-params",
   },
 })
