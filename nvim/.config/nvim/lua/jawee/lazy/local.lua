@@ -3,11 +3,11 @@ local local_plugins = {
     "jawee/azuredo.nvim",
     -- dir = "~/projects/azuredo.nvim",
     dependencies = {
-      'nvim-telescope/telescope.nvim',
-      'j-hui/fidget.nvim',
+      "nvim-telescope/telescope.nvim",
+      "j-hui/fidget.nvim",
     },
     config = function()
-      require("azuredo").setup({ project = 'jawee', debug = false, telescope = true, fidget = true })
+      require("azuredo").setup({ project = "jawee", debug = false, telescope = true, fidget = true })
       vim.keymap.set("n", "<leader>az", "<cmd>Azuredo<CR>")
     end,
   },
@@ -23,14 +23,14 @@ local local_plugins = {
     "jawee/nuggets.nvim",
     -- dir = "~/projects/nuggets.nvim/master",
     dependencies = {
-      'jhui/fidget.nvim',
-      'nvim-lua/plenary.nvim',
+      "jhui/fidget.nvim",
+      "nvim-lua/plenary.nvim",
     },
     config = function()
       require("nuggets").setup({})
       vim.keymap.set("n", "<leader>nu", "<cmd>Nuggets<CR>")
     end,
-  }
+  },
 }
 
 return local_plugins

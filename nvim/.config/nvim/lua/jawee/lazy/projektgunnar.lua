@@ -4,6 +4,5 @@ return {
     "echasnovski/mini.pick",
     "nvim-lua/plenary.nvim",
   },
-  config = function()
-  end
+  config = function() end,
 }
