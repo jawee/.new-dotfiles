@@ -1,23 +1,20 @@
 return {
   {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     dependencies = {
-      'j-hui/fidget.nvim',
-      'Decodetalkers/csharpls-extended-lsp.nvim',
-      'folke/lazydev.nvim',
+      "j-hui/fidget.nvim",
+      "Decodetalkers/csharpls-extended-lsp.nvim",
+      "folke/lazydev.nvim",
     },
     config = function()
       require("fidget").setup({})
       require("lazydev").setup({})
       local cmp_lsp = require("cmp_nvim_lsp")
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        cmp_lsp.default_capabilities())
+      local capabilities =
+          vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
       -- rest
-      local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'bashls', 'ocamllsp', 'lua_ls', 'html', 'cssls',
-        'jsonls', 'eslint' }
+      local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'bashls', 'ocamllsp', 'lua_ls', "templ", 'html',
+        'cssls', 'jsonls', 'eslint' }
       for _, lsp in pairs(servers) do
         vim.lsp.config(lsp, {
           capabilities = capabilities,
@@ -32,14 +29,6 @@ return {
         cmd = { "dotnet", bicep_lsp_bin },
       })
       vim.lsp.enable('bicep')
-
-      -- require('lspconfig').csharp_ls.setup({
-      --     capabilities = capabilities,
-      --     handlers = {
-      --         ["textDocument/definition"] = require("csharpls_extended").handler,
-      --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-      --     },
-      -- })
 
       vim.diagnostic.config({ virtual_lines = true })
 
@@ -71,10 +60,9 @@ return {
           source = true,
           header = "",
           prefix = "",
-        }
+        },
       })
-    end
-
+    end,
   },
   {
     "seblj/roslyn.nvim",
@@ -86,12 +74,10 @@ return {
           "dotnet",
           vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
           "--logLevel=Information",
-          -- "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-          "--extensionLogDirectory", -- .. vim.fs.dirname(vim.lsp.log.get_filename()),
-          vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
+          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
           "--stdio",
         },
       },
-    }
-  }
+    },
+  },
 }

@@ -14,7 +14,7 @@ return {
     "folke/tokyonight.nvim",
     name = "tokyonight",
     config = function()
-      require('tokyonight').setup({
+      require("tokyonight").setup({
         style = "storm",
         transparent = true,
         terminal_colors = true,
@@ -25,7 +25,7 @@ return {
           floats = "dark",
         },
       })
-    end
+    end,
   },
   {
     "ellisonleao/gruvbox.nvim",
@@ -38,7 +38,7 @@ return {
         transparent = false,
         terminal_colors = false,
       })
-    end
+    end,
   },
   {
     "rose-pine/neovim",
@@ -50,6 +50,6 @@ return {
         },
       })
       SetColors("rose-pine-moon")
-    end
-  }
+    end,
+  },
 }

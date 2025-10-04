@@ -1,7 +1,7 @@
 local local_plugins = {
     {
         "jawee/azuredo.nvim",
-        -- dir = "~/projects/azuredo.nvim",
+        -- dir = "~/personal/azuredo.nvim",
         dependencies = {
             'nvim-telescope/telescope.nvim',
             'j-hui/fidget.nvim',
