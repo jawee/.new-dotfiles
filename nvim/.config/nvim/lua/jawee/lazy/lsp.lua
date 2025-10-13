@@ -34,6 +34,19 @@ return {
         vim.lsp.enable(lsp)
       end
 
+      vim.lsp.config("roslyn", {
+        capabilities = capabilities,
+        filetypes = { "cs" },
+        cmd = {
+          "dotnet",
+          vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+          "--logLevel=Information",
+          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
+          "--stdio",
+        },
+      })
+      vim.lsp.enable("roslyn")
+
       -- local bicep_lsp_bin = "/home/figge/.local/bin/bicep-langserver/Bicep.LangServer.dll"
       local bicep_lsp_bin = vim.fs.joinpath(vim.fn.stdpath("data"), "bicep", "Bicep.LangServer.dll")
       vim.lsp.config("bicep", {
@@ -109,15 +122,15 @@ return {
     ft = "cs",
     opts = {
       -- your configuration comes here; leave empty for default settings
-      config = {
-        cmd = {
-          "dotnet",
-          vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-          "--logLevel=Information",
-          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
-          "--stdio",
-        },
-      },
+      -- config = {
+      --   cmd = {
+      --     "dotnet",
+      --     vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+      --     "--logLevel=Information",
+      --     "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
+      --     "--stdio",
+      --   },
+      -- },
     },
   },
 }
