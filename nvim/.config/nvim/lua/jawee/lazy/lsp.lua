@@ -21,6 +21,19 @@ return {
         vim.lsp.enable(lsp)
       end
 
+      vim.lsp.config("roslyn", {
+        capabilities = capabilities,
+        filetypes = { "cs" },
+        cmd = {
+          "dotnet",
+          vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+          "--logLevel=Information",
+          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
+          "--stdio",
+        },
+      })
+      vim.lsp.enable("roslyn")
+
       vim.diagnostic.config({ virtual_lines = true })
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -85,15 +98,15 @@ return {
     ft = "cs",
     opts = {
       -- your configuration comes here; leave empty for default settings
-      config = {
-        cmd = {
-          "dotnet",
-          vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-          "--logLevel=Information",
-          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
-          "--stdio",
-        },
-      },
+      -- config = {
+      --   cmd = {
+      --     "dotnet",
+      --     vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+      --     "--logLevel=Information",
+      --     "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
+      --     "--stdio",
+      --   },
+      -- },
     },
   },
 }
