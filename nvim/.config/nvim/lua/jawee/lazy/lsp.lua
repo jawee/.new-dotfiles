@@ -55,7 +55,7 @@ return {
       })
       vim.lsp.enable("bicep")
 
-       -- bicep stuff to get params working
+      -- bicep stuff to get params working
       vim.filetype.add({
         extension = {
           bicep = 'bicep',
