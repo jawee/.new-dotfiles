@@ -11,7 +11,7 @@ return {
       require("lazydev").setup({})
       local cmp_lsp = require("cmp_nvim_lsp")
       local capabilities =
-        vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
+          vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
       -- rest
       local servers = {
         "ts_ls",
@@ -54,6 +54,14 @@ return {
         cmd = { "dotnet", bicep_lsp_bin },
       })
       vim.lsp.enable("bicep")
+
+       -- bicep stuff to get params working
+      vim.filetype.add({
+        extension = {
+          bicep = 'bicep',
+          bicepparam = 'bicep-params',
+        }
+      })
 
       vim.diagnostic.config({ virtual_lines = true })
 
