@@ -21,7 +21,7 @@ return {
         vim.lsp.enable(lsp)
       end
 
-      vim.lsp.config("roslyn", {
+      vim.lsp.config("roslyn_ls", {
         capabilities = capabilities,
         filetypes = { "cs" },
         cmd = {
@@ -32,7 +32,7 @@ return {
           "--stdio",
         },
       })
-      vim.lsp.enable("roslyn")
+      vim.lsp.enable("roslyn_ls")
 
       vim.diagnostic.config({ virtual_lines = true })
 
