@@ -34,7 +34,7 @@ return {
         vim.lsp.enable(lsp)
       end
 
-      vim.lsp.config("roslyn", {
+      vim.lsp.config("roslyn_ls", {
         capabilities = capabilities,
         filetypes = { "cs" },
         cmd = {
@@ -45,7 +45,7 @@ return {
           "--stdio",
         },
       })
-      vim.lsp.enable("roslyn")
+      vim.lsp.enable("roslyn_ls")
 
       -- local bicep_lsp_bin = "/home/figge/.local/bin/bicep-langserver/Bicep.LangServer.dll"
       local bicep_lsp_bin = vim.fs.joinpath(vim.fn.stdpath("data"), "bicep", "Bicep.LangServer.dll")
