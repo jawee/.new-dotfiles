@@ -93,20 +93,20 @@ return {
       })
     end,
   },
-  {
-    "seblj/roslyn.nvim",
-    ft = "cs",
-    opts = {
-      -- your configuration comes here; leave empty for default settings
-      -- config = {
-      --   cmd = {
-      --     "dotnet",
-      --     vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-      --     "--logLevel=Information",
-      --     "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
-      --     "--stdio",
-      --   },
-      -- },
-    },
-  },
+  -- {
+  --   "seblj/roslyn.nvim",
+  --   ft = "cs",
+  --   opts = {
+  --     -- your configuration comes here; leave empty for default settings
+  --     -- config = {
+  --     --   cmd = {
+  --     --     "dotnet",
+  --     --     vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+  --     --     "--logLevel=Information",
+  --     --     "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
+  --     --     "--stdio",
+  --     --   },
+  --     -- },
+  --   },
+  -- },
 }
