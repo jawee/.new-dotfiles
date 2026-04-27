@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
 tmux new-window -dn scratch
+tmux new-window -dn ai
+tmux send-keys -t ai "copilot" ^M
 clear
 nvim .
