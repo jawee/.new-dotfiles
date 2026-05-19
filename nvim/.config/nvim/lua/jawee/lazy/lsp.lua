@@ -24,13 +24,13 @@ return {
       vim.lsp.config("roslyn_ls", {
         capabilities = capabilities,
         filetypes = { "cs" },
-        cmd = {
-          "dotnet",
-          vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-          "--logLevel=Information",
-          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
-          "--stdio",
-        },
+        -- cmd = {
+        --   "dotnet",
+        --   vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+        --   "--logLevel=Information",
+        --   "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
+        --   "--stdio",
+        -- },
       })
       vim.lsp.enable("roslyn_ls")
 
