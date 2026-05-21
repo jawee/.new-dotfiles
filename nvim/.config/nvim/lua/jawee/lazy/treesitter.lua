@@ -1,12 +1,12 @@
 return {
-  -- "nvim-treesitter/nvim-treesitter",
-  -- branch = "main",
+  "nvim-treesitter/nvim-treesitter",
+  branch = "main",
   -- lazy = false,
   -- dependencies = {
   --   "nvim-treesitter/nvim-treesitter-context",
   -- },
-  -- build = ":TSUpdate",
-  -- config = function()
+  build = ":TSUpdate",
+  config = function()
   --   require("nvim-treesitter").setup({
   --     -- A list of parser names, or "all"
   --     ensure_installed = {
@@ -62,5 +62,5 @@ return {
   --   -- }
   --   --
   --   -- vim.treesitter.language.register("templ", "templ")
-  -- end,
+  end,
 }
