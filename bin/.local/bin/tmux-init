@@ -2,6 +2,6 @@
 
 tmux new-window -dn scratch
 tmux new-window -dn ai
-tmux send-keys -t ai 'copilot' C-m
+tmux send-keys -t ai 'codex' C-m
 clear
 nvim .
