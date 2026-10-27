@@ -13,7 +13,7 @@ return {
       local capabilities =
         vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
       -- rest
-      local servers = { "ts_ls", "rust_analyzer", "clangd", "gopls", "bashls", "ocamllsp", "lua_ls", "templ" }
+      local servers = { "tsc", "rust_analyzer", "clangd", "gopls", "bashls", "ocamllsp", "lua_ls", "templ", "pyright" }
       for _, lsp in pairs(servers) do
         vim.lsp.config(lsp, {
           capabilities = capabilities,
