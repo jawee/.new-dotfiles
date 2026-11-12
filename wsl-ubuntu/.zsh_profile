@@ -1,5 +1,21 @@
 alias open="explorer.exe"
 
+psrule() {
+  local image="psrule-azure:local"
+  local docker_dir="$HOME/.new-dotfiles/docker/psrule"
+
+  echo "Building PSRule image..."
+  docker build -t "$image" "$docker_dir" || return 1
+
+  echo "Scanning $PWD..."
+  docker run --rm \
+    -v "$PWD:/src:ro" \
+    -v "$docker_dir/ps-rule.yaml:/config/ps-rule.yaml:ro" \
+    "$image" \
+    -OptionPath /config/ps-rule.yaml \
+    -As Summary
+}
+
 # Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 

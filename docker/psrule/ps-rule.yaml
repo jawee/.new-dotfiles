@@ -1,0 +1,16 @@
+configuration:
+  AZURE_BICEP_FILE_EXPANSION: true
+
+rule:
+  exclude:
+    # Single instance is acceptable for our workloads
+    - Azure.AppService.PlanInstanceCount
+
+    # Add additional global exclusions here
+    - Azure.Storage.BlobPublicAccess
+    - Azure.AppService.AvailabilityZone
+
+    # Temporary, this should probably be investigated
+    - Azure.Deployment.SecureValue
+    - Azure.Resource.UseTags
+

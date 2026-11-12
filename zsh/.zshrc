@@ -128,3 +128,7 @@ export PATH="/usr/local/go/bin:$PATH"
 
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^b "worktree\n"
+
+# opencode
+export PATH=/home/figge/.opencode/bin:$PATH
